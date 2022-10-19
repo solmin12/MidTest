@@ -5,11 +5,16 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.swing.ActionMap;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
 import javax.swing.border.LineBorder;
 
 public class Panel_main extends JPanel {
@@ -18,8 +23,9 @@ public class Panel_main extends JPanel {
 	
 	public Panel_main() {
 		Font font = new Font("Arial Rounded MT 굵게", Font.BOLD,50);
+		Font font_btn = new Font("Arial Rounded MT 굵게", Font.BOLD, 20);
 		
-		this.setBorder(new LineBorder(Color.blue, 3));
+//		this.setBorder(new LineBorder(Color.blue, 3));
 		this.setLayout(new GridLayout(0,1));
 		//입력 받은 값을 보여줄 textArea
 		JTextArea input = new JTextArea();
@@ -38,7 +44,7 @@ public class Panel_main extends JPanel {
 				input.append("√");
 			}	
 		});
-		JButton pi = new JButton("∏");
+		JButton pi = new JButton(""); //∏의 (ASCII값 8719)
 		JButton up = new JButton("^");
 		up.addActionListener(new ActionListener() {
 			@Override
@@ -199,6 +205,58 @@ public class Panel_main extends JPanel {
 				calculator.clearArray();
 			}
 		});
+		
+		one.setBackground(new Color(255,255,255));
+		two.setBackground(new Color(255,255,255));
+		three.setBackground(new Color(255,255,255));
+		four.setBackground(new Color(255,255,255));
+		five.setBackground(new Color(255,255,255));
+		six.setBackground(new Color(255,255,255));
+		seven.setBackground(new Color(255,255,255));
+		eight.setBackground(new Color(255,255,255));
+		nine.setBackground(new Color(255,255,255));
+		zero.setBackground(new Color(255,255,255));
+		root.setBackground(new Color(255,255,255));
+		divison.setBackground(new Color(255,255,255));
+		all_del.setBackground(new Color(255,255,255));
+		pi.setBackground(new Color(255,255,255));
+		multiply.setBackground(new Color(255,255,255));
+		remain.setBackground(new Color(255,255,255));
+		up.setBackground(new Color(255,255,255));
+		add.setBackground(new Color(255,255,255));
+		non.setBackground(new Color(255,255,255));
+		factorial.setBackground(new Color(255,255,255));
+		zero.setBackground(new Color(255,255,255));
+		point.setBackground(new Color(255,255,255));
+		delete.setBackground(new Color(255,255,255));
+		substraction.setBackground(new Color(255,255,255));
+		result.setBackground(new Color(255,255,255));
+		
+		one.setFont(font_btn);
+		two.setFont(font_btn);
+		three.setFont(font_btn);
+		four.setFont(font_btn);
+		five.setFont(font_btn);
+		six.setFont(font_btn);
+		seven.setFont(font_btn);
+		eight.setFont(font_btn);
+		nine.setFont(font_btn);
+		zero.setFont(font_btn);
+		point.setFont(font_btn);
+		root.setFont(font_btn);
+		divison.setFont(font_btn);
+		all_del.setFont(font_btn);
+		pi.setFont(font_btn);
+		multiply.setFont(font_btn);
+		remain.setFont(font_btn);
+		up.setFont(font_btn);
+		add.setFont(font_btn);
+		non.setFont(font_btn);
+		factorial.setFont(font_btn);
+		delete.setFont(font_btn);
+		substraction.setFont(font_btn);
+		result.setFont(font_btn);
+		
 		btn.add(root);
 		btn.add(one);
 		btn.add(two);
@@ -223,10 +281,14 @@ public class Panel_main extends JPanel {
 		btn.add(delete);
 		btn.add(substraction);
 		btn.add(result);
+		
 	}
-//	
-//	public String write() {
-//		return all;
-//	}
 	
+	ActionListener exit = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent ae) {
+			System.exit(0);
+		}
+	};
+
 }
