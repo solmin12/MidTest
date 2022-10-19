@@ -23,6 +23,7 @@ public class Panel_main extends JPanel {
 	String all = "";
 	
 	public Panel_main() {
+		
 		Font font = new Font("Arial Rounded MT ±½°Ô", Font.BOLD,50);
 		Font font_btn = new Font("Arial Rounded MT ±½°Ô", Font.BOLD, 20);
 		
@@ -42,11 +43,6 @@ public class Panel_main extends JPanel {
 		Image img_b = img_back.getImage();
 		Image img_b_ = img_b.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon img_back2 = new ImageIcon(img_b_);
-		ImageIcon img_ruler = new ImageIcon("./image/ruler.png");
-		Image img_r = img_ruler.getImage();
-		Image img_r_ = img_r.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
-		ImageIcon img_ruler2 = new ImageIcon(img_r_);
-		
 		
 		JButton root = new JButton("¡î");
 		root.addActionListener(new ActionListener() {
@@ -55,7 +51,6 @@ public class Panel_main extends JPanel {
 				input.append("¡î");
 			}	
 		});
-		JButton pi = new JButton(img_ruler2); //¢³ÀÇ (ASCII°ª 8719)
 		JButton up = new JButton("^");
 		up.addActionListener(new ActionListener() {
 			@Override
@@ -216,6 +211,7 @@ public class Panel_main extends JPanel {
 				calculator.clearArray();
 			}
 		});
+		JButton non_ = new JButton();
 		
 		one.setBackground(new Color(255,255,255));
 		two.setBackground(new Color(255,255,255));
@@ -230,7 +226,6 @@ public class Panel_main extends JPanel {
 		root.setBackground(new Color(255,255,255));
 		divison.setBackground(new Color(255,255,255));
 		all_del.setBackground(new Color(255,255,255));
-		pi.setBackground(new Color(255,255,255));
 		multiply.setBackground(new Color(255,255,255));
 		remain.setBackground(new Color(255,255,255));
 		up.setBackground(new Color(255,255,255));
@@ -242,6 +237,7 @@ public class Panel_main extends JPanel {
 		delete.setBackground(new Color(255,255,255));
 		substraction.setBackground(new Color(255,255,255));
 		result.setBackground(new Color(255,255,255));
+		non_.setBackground(new Color(255,255,255));
 		
 		one.setFont(font_btn);
 		two.setFont(font_btn);
@@ -257,7 +253,6 @@ public class Panel_main extends JPanel {
 		root.setFont(font_btn);
 		divison.setFont(font_btn);
 		all_del.setFont(font_btn);
-		pi.setFont(font_btn);
 		multiply.setFont(font_btn);
 		remain.setFont(font_btn);
 		up.setFont(font_btn);
@@ -267,28 +262,29 @@ public class Panel_main extends JPanel {
 		delete.setFont(font_btn);
 		substraction.setFont(font_btn);
 		result.setFont(font_btn);
+		non_.setFont(font_btn);
 		
 		btn.add(root);
-		btn.add(one);
-		btn.add(two);
-		btn.add(three);
+		btn.add(seven);
+		btn.add(eight);
+		btn.add(nine);
 		btn.add(divison);
 		btn.add(all_del);
-		btn.add(pi);
+		btn.add(non_);
 		btn.add(four);
 		btn.add(five);
 		btn.add(six);
 		btn.add(multiply);
 		btn.add(remain);
 		btn.add(up);
-		btn.add(seven);
-		btn.add(eight);
-		btn.add(nine);
+		btn.add(one);
+		btn.add(two);
+		btn.add(three);
 		btn.add(add);
 		btn.add(non);
 		btn.add(factorial);
-		btn.add(zero);
 		btn.add(point);
+		btn.add(zero);
 		btn.add(delete);
 		btn.add(substraction);
 		btn.add(result);
