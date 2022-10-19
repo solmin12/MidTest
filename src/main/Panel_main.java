@@ -3,6 +3,7 @@ package main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -37,6 +38,16 @@ public class Panel_main extends JPanel {
 		btn.setLayout(new GridLayout(4,6));
 		this.add(btn);
 		
+		ImageIcon img_back = new ImageIcon("./image/back.png");
+		Image img_b = img_back.getImage();
+		Image img_b_ = img_b.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon img_back2 = new ImageIcon(img_b_);
+		ImageIcon img_ruler = new ImageIcon("./image/ruler.png");
+		Image img_r = img_ruler.getImage();
+		Image img_r_ = img_r.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon img_ruler2 = new ImageIcon(img_r_);
+		
+		
 		JButton root = new JButton("√");
 		root.addActionListener(new ActionListener() {
 			@Override
@@ -44,7 +55,7 @@ public class Panel_main extends JPanel {
 				input.append("√");
 			}	
 		});
-		JButton pi = new JButton(""); //∏의 (ASCII값 8719)
+		JButton pi = new JButton(img_ruler2); //∏의 (ASCII값 8719)
 		JButton up = new JButton("^");
 		up.addActionListener(new ActionListener() {
 			@Override
@@ -136,7 +147,7 @@ public class Panel_main extends JPanel {
 				input.append(".");
 			}
 		});
-		JButton delete = new JButton("<-");
+		JButton delete = new JButton(img_back2);
 		delete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
