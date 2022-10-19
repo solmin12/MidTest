@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.io.IOException;
 
 public class Calculator {
+	// operand¿Í operator·Î ¹Ù²Û °ª
 	ArrayList<String> all = new ArrayList<>();
+	// ASCIIÄÚµå °ª (decimal)
 	ArrayList<String> input = new ArrayList<>();
 
 	static String operator = "";
@@ -42,15 +44,15 @@ public class Calculator {
 		args.remove(0);
 		return operand;
 	}
-	
-	//ÆÑÅä¸®¾ó ! (ASCII°ª 33)
+
+	// ÆÑÅä¸®¾ó ! (ASCII°ª 33)
 	public ArrayList<String> factorial(ArrayList<String> all) {
 		int count_fac = Collections.frequency(all, "-15");
 		for (int i = 0; i < count_fac; i++) {
 			double c = 1;
-			for(int a=1;a<=Double.parseDouble(all.get(all.indexOf("-15") - 1));a++){
+			for (int a = 1; a <= Double.parseDouble(all.get(all.indexOf("-15") - 1)); a++) {
 				c *= a;
-						}
+			}
 			all.set(all.indexOf("-15") - 1, Double.toString(c));
 			all.remove(all.indexOf("-15"));
 		}
@@ -61,18 +63,23 @@ public class Calculator {
 	public ArrayList<String> sqrt(ArrayList<String> all) {
 		int count_sqrt = Collections.frequency(all, "8682");
 		for (int i = 0; i < count_sqrt; i++) {
-			if(Double.parseDouble(all.get(all.indexOf("8682") - 1))>=0&&Double.parseDouble(all.get(all.indexOf("8682") - 1))<=9) {
+			if (all.indexOf("8682") == 0) {
+				double c = Math.sqrt(Double.parseDouble(all.get(all.indexOf("8682") + 1)));
+				all.remove(0);
+				all.set(0, Double.toString(c));
+			} else if (Double.parseDouble(all.get(all.indexOf("8682") - 1)) >= 0
+					&& Double.parseDouble(all.get(all.indexOf("8682") - 1)) <= 9) {
 				double c = Double.parseDouble(all.get(all.indexOf("8682") - 1))
 						* Math.sqrt(Double.parseDouble(all.get(all.indexOf("8682") + 1)));
 				all.set(all.indexOf("8682") - 1, Double.toString(c));
 				all.remove(all.indexOf("8682") + 1);
 				all.remove(all.indexOf("8682"));
-			}else {
+			} else {
 				double c = Math.sqrt(Double.parseDouble(all.get(all.indexOf("8682") + 1)));
 				all.remove(all.indexOf("8682") + 1);
 				all.set(all.indexOf("8682"), Double.toString(c));
 			}
-					
+
 		}
 		return all;
 	}
@@ -90,31 +97,33 @@ public class Calculator {
 		return all;
 	}
 
+	// °ö¼À
 	private ArrayList<String> multiply(ArrayList<String> all) {
 
-		int count_multiply = Collections.frequency(all, "-6");
+//		int count_multiply = Collections.frequency(all, "-6");
 
-		for (int i = 0; i < count_multiply; i++) {
-			double c = Double.parseDouble(all.get(all.indexOf("-6") - 1))
-					* Double.parseDouble(all.get(all.indexOf("-6") + 1));
-			all.set(all.indexOf("-6") - 1, Double.toString(c));
-			all.remove(all.indexOf("-6") + 1);
-			all.remove(all.indexOf("-6"));
-		}
+//		for (int i = 0; i < count_multiply; i++) {
+		double c = Double.parseDouble(all.get(all.indexOf("-6") - 1))
+				* Double.parseDouble(all.get(all.indexOf("-6") + 1));
+		all.set(all.indexOf("-6") - 1, Double.toString(c));
+		all.remove(all.indexOf("-6") + 1);
+		all.remove(all.indexOf("-6"));
+		// }
 		return all;
 	}
 
+	// ³ª´°¼À
 	private ArrayList<String> divison(ArrayList<String> all) {
 
-		int count_divison = Collections.frequency(all, "-1");
+//		int count_divison = Collections.frequency(all, "-1");
 
-		for (int i = 0; i < count_divison; i++) {
-			double c = Double.parseDouble(all.get(all.indexOf("-1") - 1))
-					/ Double.parseDouble(all.get(all.indexOf("-1") + 1));
-			all.set(all.indexOf("-1") - 1, Double.toString(c));
-			all.remove(all.indexOf("-1") + 1);
-			all.remove(all.indexOf("-1"));
-		}
+//		for (int i = 0; i < count_divison; i++) {
+		double c = Double.parseDouble(all.get(all.indexOf("-1") - 1))
+				/ Double.parseDouble(all.get(all.indexOf("-1") + 1));
+		all.set(all.indexOf("-1") - 1, Double.toString(c));
+		all.remove(all.indexOf("-1") + 1);
+		all.remove(all.indexOf("-1"));
+//		}
 		return all;
 	}
 
@@ -148,6 +157,7 @@ public class Calculator {
 		return all;
 	}
 
+	// ³ª¸ÓÁö
 	private ArrayList<String> remain(ArrayList<String> all) {
 
 		int count_substraction = Collections.frequency(all, "-11");
@@ -168,16 +178,39 @@ public class Calculator {
 
 		while (!operator.equals("13") && !operator.equals("72")) {
 			String operand_ = readInput(input);
-			all.add(operand_);
-			all.add(operator);
+			if (operand_.equals("")) {
+				all.add(operator);
+			} else {
+				all.add(operand_);
+				all.add(operator);
+			}
 		}
 		operator = "";
-		
+
+		while (Collections.frequency(all, "-6") != 0 || Collections.frequency(all, "-1") != 0) {
+			int a = 0;
+			int b = 0;
+			if (Collections.frequency(all, "-6") >= 1 && Collections.frequency(all, "-1") >= 1) {
+				a = all.indexOf("-6");
+				b = all.indexOf("-1");
+				if (a > b && a > 0 && b > 0) {
+					divison(all);
+				} else {
+					multiply(all);
+				}
+			}else if(Collections.frequency(all, "-6")==0) {
+				divison(all);
+			}else {
+				multiply(all);
+			}
+			
+		}
+
 		sqrt(all);
 		square(all);
 		factorial(all);
-		multiply(all);
-		divison(all);
+		// multiply(all);
+		// divison(all);
 		add(all);
 		substraction(all);
 		remain(all);
