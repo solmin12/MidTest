@@ -187,6 +187,10 @@ public class Calculator {
 		}
 		operator = "";
 
+		sqrt(all);
+		square(all);
+		factorial(all);
+
 		while (Collections.frequency(all, "-6") != 0 || Collections.frequency(all, "-1") != 0) {
 			int a = 0;
 			int b = 0;
@@ -198,25 +202,20 @@ public class Calculator {
 				} else {
 					multiply(all);
 				}
-			}else if(Collections.frequency(all, "-6")==0) {
+			} else if (Collections.frequency(all, "-6") == 0) {
 				divison(all);
-			}else {
+			} else {
 				multiply(all);
 			}
-			
+
 		}
 
-		sqrt(all);
-		square(all);
-		factorial(all);
-		// multiply(all);
-		// divison(all);
 		add(all);
 		substraction(all);
 		remain(all);
 
 		if (all.size() != 0) {
-			result = all.get(0);
+			result = String.format("%.5f", Double.parseDouble(all.get(0)));
 		}
 
 		return result;

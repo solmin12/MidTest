@@ -9,7 +9,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		this.setTitle("°è»ê±â");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 700);
+		this.setSize(600, 700);
 		this.setLocationRelativeTo(null);
 		this.setLayout(new GridLayout(0,1));
 		

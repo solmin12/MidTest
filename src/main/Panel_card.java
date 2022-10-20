@@ -1,12 +1,15 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -17,7 +20,7 @@ public class Panel_card extends JPanel {
 		this.setLayout(new CardLayout());
 		
 		JPanel main = new JPanel();
-		main.setLayout(new FlowLayout());
+		main.setLayout(new BorderLayout());
 		this.add(main,"main");
 		
 		ImageIcon img_cal = new ImageIcon("./image/calculator.png");
@@ -31,7 +34,7 @@ public class Panel_card extends JPanel {
 		
 		
 		JButton ruler = new JButton(img_ruler2);
-		main.add(ruler);
+		main.add(ruler, BorderLayout.NORTH);
 		ruler.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -42,10 +45,10 @@ public class Panel_card extends JPanel {
 
 		
 		Panel_main panel_main = new Panel_main();
-		main.add(panel_main);
+		main.add(panel_main, BorderLayout.CENTER);
 		//
 		JPanel panel_ = new JPanel();
-		panel_.setLayout(new FlowLayout());
+		panel_.setLayout(new BorderLayout());
 		this.add(panel_,"measure");
 		
 		JButton calculator = new JButton(img_cal2);
@@ -56,10 +59,10 @@ public class Panel_card extends JPanel {
 			}
 		});
 		calculator.setBackground(new Color(255,255,255));
-		panel_.add(calculator);
+		panel_.add(calculator, BorderLayout.NORTH);
 
 		Panel_measure panel_measure = new Panel_measure();
-		panel_.add(panel_measure);
+		panel_.add(panel_measure, BorderLayout.CENTER);
 	}
 	
 	public void change() {

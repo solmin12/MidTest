@@ -21,6 +21,8 @@ import javax.swing.border.LineBorder;
 public class Panel_main extends JPanel {
 	Calculator calculator = new Calculator();
 	String all = "";
+	JTextArea input = new JTextArea();
+	JButton[] btn_ = new JButton[24];
 	
 	public Panel_main() {
 		
@@ -30,7 +32,6 @@ public class Panel_main extends JPanel {
 //		this.setBorder(new LineBorder(Color.blue, 3));
 		this.setLayout(new GridLayout(0,1));
 		//입력 받은 값을 보여줄 textArea
-		JTextArea input = new JTextArea();
 		input.setFont(font);
 		input.setEditable(false);
 		this.add(input);
@@ -44,106 +45,38 @@ public class Panel_main extends JPanel {
 		Image img_b_ = img_b.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon img_back2 = new ImageIcon(img_b_);
 		
-		JButton root = new JButton("√");
-		root.addActionListener(new ActionListener() {
+		for(int i=0;i<10;i++) {
+		btn_[i] = new JButton(Integer.toString(i));
+		}
+		btn_[10] = new JButton("-");//substraction
+		btn_[11] = new JButton("√"); //root
+		btn_[12] = new JButton("^"); //up
+		btn_[13] = new JButton("!"); //factorial
+		btn_[14] = new JButton("."); //point
+		btn_[15] = new JButton("%"); //remain
+		btn_[16]= new JButton("/"); //divison
+		btn_[17]= new JButton("*"); //multiply
+		btn_[18]= new JButton("+"); //add
+		btn_[19]= new JButton(""); //non
+		btn_[20]= new JButton("AC"); //all_clear
+		btn_[21]= new JButton(img_back2); //delete
+		btn_[22]= new JButton("="); //result
+		btn_[23]= new JButton(""); //non
+		
+		ActionHandler add = new ActionHandler();
+		
+		for(int i=0;i<19;i++) {
+			btn_[i].addActionListener(add);
+		}
+		
+		btn_[20].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				input.append("√");
-			}	
-		});
-		JButton up = new JButton("^");
-		up.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("^");
-			}	
-		});
-		JButton factorial = new JButton("!");
-		factorial.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("!");
-			}	
-		});
-		JButton one = new JButton("1");
-		one.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("1");
+				int i = input.getCaretPosition();
+				input.replaceRange("", 0,i);
 			}
 		});
-		JButton two = new JButton("2");
-		two.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("2");
-			}
-		});
-		JButton three = new JButton("3");
-		three.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("3");
-			}
-		});
-		JButton four = new JButton("4");
-		four.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("4");
-			}
-		});
-		JButton five = new JButton("5");
-		five.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("5");
-			}
-		});
-		JButton six = new JButton("6");
-		six.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("6");
-			}
-		});
-		JButton seven = new JButton("7");
-		seven.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("7");
-			}
-		});
-		JButton eight = new JButton("8");
-		eight.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("8");
-			}
-		});
-		JButton nine = new JButton("9");
-		nine.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("9");
-			}
-		});
-		JButton zero = new JButton("0");
-		zero.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("0");
-			}
-		});
-		JButton point = new JButton(".");
-		point.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append(".");
-			}
-		});
-		JButton delete = new JButton(img_back2);
-		delete.addActionListener(new ActionListener() {
+		btn_[21].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(input.getSelectionEnd()==0) {
@@ -154,52 +87,7 @@ public class Panel_main extends JPanel {
 				}
 			}
 		});
-		JButton divison = new JButton("/");
-		divison.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("/");
-			}
-		});
-		JButton multiply = new JButton("*");
-		multiply.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("*");
-			}
-		});
-		JButton add = new JButton("+");
-		add.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("+");
-			}
-		});
-		JButton substraction = new JButton("-");
-		substraction.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("-");
-			}
-		});
-		JButton all_del = new JButton("AC");
-		all_del.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int i = input.getCaretPosition();
-				input.replaceRange("", 0,i);
-			}
-		});
-		JButton remain = new JButton("%");
-		remain.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input.append("%");
-			}
-		});
-		JButton non = new JButton("");
-		JButton result = new JButton("=");
-		result.addActionListener(new ActionListener() {
+		btn_[22].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//"="버튼을 누를 경우 TextArea에 입력된 값이 Calculator에 전달되도록 만들어야 함
@@ -211,84 +99,36 @@ public class Panel_main extends JPanel {
 				calculator.clearArray();
 			}
 		});
-		JButton non_ = new JButton();
 		
-		one.setBackground(new Color(255,255,255));
-		two.setBackground(new Color(255,255,255));
-		three.setBackground(new Color(255,255,255));
-		four.setBackground(new Color(255,255,255));
-		five.setBackground(new Color(255,255,255));
-		six.setBackground(new Color(255,255,255));
-		seven.setBackground(new Color(255,255,255));
-		eight.setBackground(new Color(255,255,255));
-		nine.setBackground(new Color(255,255,255));
-		zero.setBackground(new Color(255,255,255));
-		root.setBackground(new Color(255,255,255));
-		divison.setBackground(new Color(255,255,255));
-		all_del.setBackground(new Color(255,255,255));
-		multiply.setBackground(new Color(255,255,255));
-		remain.setBackground(new Color(255,255,255));
-		up.setBackground(new Color(255,255,255));
-		add.setBackground(new Color(255,255,255));
-		non.setBackground(new Color(255,255,255));
-		factorial.setBackground(new Color(255,255,255));
-		zero.setBackground(new Color(255,255,255));
-		point.setBackground(new Color(255,255,255));
-		delete.setBackground(new Color(255,255,255));
-		substraction.setBackground(new Color(255,255,255));
-		result.setBackground(new Color(255,255,255));
-		non_.setBackground(new Color(255,255,255));
+		for(int i=0;i<24;i++) {
+		btn_[i].setFont(font_btn);
+		btn_[i].setBackground(new Color(255,255,255));
+		}
 		
-		one.setFont(font_btn);
-		two.setFont(font_btn);
-		three.setFont(font_btn);
-		four.setFont(font_btn);
-		five.setFont(font_btn);
-		six.setFont(font_btn);
-		seven.setFont(font_btn);
-		eight.setFont(font_btn);
-		nine.setFont(font_btn);
-		zero.setFont(font_btn);
-		point.setFont(font_btn);
-		root.setFont(font_btn);
-		divison.setFont(font_btn);
-		all_del.setFont(font_btn);
-		multiply.setFont(font_btn);
-		remain.setFont(font_btn);
-		up.setFont(font_btn);
-		add.setFont(font_btn);
-		non.setFont(font_btn);
-		factorial.setFont(font_btn);
-		delete.setFont(font_btn);
-		substraction.setFont(font_btn);
-		result.setFont(font_btn);
-		non_.setFont(font_btn);
-		
-		btn.add(root);
-		btn.add(seven);
-		btn.add(eight);
-		btn.add(nine);
-		btn.add(divison);
-		btn.add(all_del);
-		btn.add(non_);
-		btn.add(four);
-		btn.add(five);
-		btn.add(six);
-		btn.add(multiply);
-		btn.add(remain);
-		btn.add(up);
-		btn.add(one);
-		btn.add(two);
-		btn.add(three);
-		btn.add(add);
-		btn.add(non);
-		btn.add(factorial);
-		btn.add(point);
-		btn.add(zero);
-		btn.add(delete);
-		btn.add(substraction);
-		btn.add(result);
-		
+		btn.add(btn_[11]);
+		btn.add(btn_[7]);
+		btn.add(btn_[8]);
+		btn.add(btn_[9]);
+		btn.add(btn_[18]);
+		btn.add(btn_[17]);
+		btn.add(btn_[12]);
+		btn.add(btn_[4]);
+		btn.add(btn_[5]);
+		btn.add(btn_[6]);
+		btn.add(btn_[10]);
+		btn.add(btn_[16]);
+		btn.add(btn_[13]);
+		btn.add(btn_[1]);
+		btn.add(btn_[2]);
+		btn.add(btn_[3]);
+		btn.add(btn_[21]);
+		btn.add(btn_[20]);
+		btn.add(btn_[15]);
+		btn.add(btn_[19]);
+		btn.add(btn_[0]);
+		btn.add(btn_[14]);
+		btn.add(btn_[22]);
+		btn.add(btn_[23]);
 	}
 	
 	ActionListener exit = new ActionListener() {
@@ -297,5 +137,13 @@ public class Panel_main extends JPanel {
 			System.exit(0);
 		}
 	};
+	
+	private class ActionHandler implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String i = e.getActionCommand();
+			input.append(i);
+		}		
+	}
 
 }
