@@ -28,8 +28,7 @@ public class Panel_main extends JPanel {
 		
 		Font font = new Font("Arial Rounded MT 굵게", Font.BOLD,50);
 		Font font_btn = new Font("Arial Rounded MT 굵게", Font.BOLD, 20);
-		
-//		this.setBorder(new LineBorder(Color.blue, 3));
+
 		this.setLayout(new GridLayout(0,1));
 		//입력 받은 값을 보여줄 textArea
 		input.setFont(font);

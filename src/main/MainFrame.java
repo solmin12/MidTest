@@ -12,8 +12,6 @@ public class MainFrame extends JFrame {
 		this.setSize(600, 700);
 		this.setLocationRelativeTo(null);
 		this.setLayout(new GridLayout(0,1));
-		
-		
 
 		Panel_card 	panel_card = new Panel_card();
 		this.add(panel_card);

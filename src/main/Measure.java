@@ -6,7 +6,7 @@ public class Measure {
 	}
 	
 	public double mm(double i) {
-		double c = i*0.1;
+		double c = i*10;
 		return c;
 	}
 	

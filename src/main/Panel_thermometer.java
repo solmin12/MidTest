@@ -13,16 +13,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class Panel_measure extends JPanel {
+public class Panel_thermometer extends JPanel {
+	Thermometer the = new Thermometer();
 	JTextArea text_input = new JTextArea();
 	JButton[] btn_ = new JButton[16];
 	Double a;
 
-	public Panel_measure() {
+	public Panel_thermometer() {
 		this.setLayout(new GridLayout(0, 1));
 
 		Font font = new Font("Arial Rounded MT 굵게", Font.BOLD, 50);
@@ -32,7 +32,7 @@ public class Panel_measure extends JPanel {
 		this.add(text);
 
 		JPanel input = new JPanel(new BorderLayout());
-		JLabel label_input = new JLabel("입력 (센티미터,CM)");
+		JLabel label_input = new JLabel("입력 (섭씨)");
 		input.add(label_input, BorderLayout.NORTH);
 
 		text_input.setFont(font);
@@ -45,7 +45,7 @@ public class Panel_measure extends JPanel {
 		JPanel set = new JPanel(new FlowLayout());
 		result.add(set, BorderLayout.NORTH);
 
-		String[] mea = { "밀리미터,mm", "미터,m", "킬로미터,km", "인치,in", "피트,ft", "야드,yd", "마일,mi" };
+		String[] mea = {"화씨","켈빈"};
 		JComboBox<String> box = new JComboBox<>(mea);
 
 		set.add(box);
@@ -103,20 +103,10 @@ public class Panel_measure extends JPanel {
 				} else {
 					String i = box.getSelectedItem().toString();
 					Measure measure = new Measure();
-					if (i.equals("밀리미터,mm")) {
-						a = measure.mm(Double.parseDouble(n));
-					} else if (i.equals("미터,m")) {
-						a = measure.m(Double.parseDouble(n));
-					} else if (i.equals("킬로미터,km")) {
-						a = measure.km(Double.parseDouble(n));
-					} else if (i.equals("인치,in")) {
-						a = measure.in(Double.parseDouble(n));
-					} else if (i.equals("피트,ft")) {
-						a = measure.ft(Double.parseDouble(n));
-					} else if (i.equals("야드,yd")) {
-						a = measure.yd(Double.parseDouble(n));
-					} else if (i.equals("마일,mi")) {
-						a = measure.mi(Double.parseDouble(n));
+					if (i.equals("화씨")) {
+						a = the.f(Double.parseDouble(n));
+					} else if (i.equals("켈빈")) {
+						a = the.k(Double.parseDouble(n));
 					}
 					text_result.setText(Double.toString(a));
 				}
